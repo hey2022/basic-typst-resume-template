@@ -18,6 +18,7 @@
   author-font-size: 20pt,
   font-size: 10pt,
   lang: "en",
+  margin: 0.5in, // Reccomended to have 0.5in margin on all sides
   body,
 ) = {
   // Sets document metadata
@@ -33,9 +34,8 @@
     ligatures: false,
   )
 
-  // Reccomended to have 0.5in margin on all sides
   set page(
-    margin: 0.5in,
+    margin: margin,
     paper: paper,
   )
 
