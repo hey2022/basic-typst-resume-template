@@ -238,7 +238,7 @@
       if role == "" {
         [*#activity*]
       } else {
-        [*#role*, #activity]
+        [*#activity* #sym.dash.em #role]
       }
     },
     right: dates,
