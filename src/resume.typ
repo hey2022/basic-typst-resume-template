@@ -146,6 +146,10 @@
   }
 }
 
+#let display-url(url) = {
+  url.replace(regex("^https?://"), "")
+}
+
 // Section components below
 #let edu(
   institution: "",
@@ -195,28 +199,26 @@
   url: "",
   technologies: "",
   dates: "",
+  show-url: false,
 ) = {
   generic-one-by-two(
-    left: {
-      if role == "" {
-        [
-          *#name*
-          #if technologies != "" [ | #technologies]
-          #if url != "" and dates != "" [ (#link("https://" + url)[#url])]
-        ]
+    left: [
+      #if not show-url and url != "" {
+        link(url)[#strong(name)]
       } else {
-        [
-          *#name* #sym.dash.em #role
-          #if technologies != "" [ | #technologies]
-          #if url != "" and dates != "" [ (#link("https://" + url)[#url])]
-        ]
+        strong(name)
       }
-    },
+      #if role != "" [ #sym.dash.em #role]
+      #if technologies != "" [ | #technologies]
+      #if (
+        show-url and url != "" and dates != ""
+      ) [(#link(url)[#display-url(url)])]
+    ],
     right: {
-      if dates == "" and url != "" {
-        link("https://" + url)[#url]
-      } else {
+      if dates != "" {
         dates
+      } else if show-url and url != "" {
+        link(url)[#display-url(url)]
       }
     },
   )
@@ -227,12 +229,18 @@
   issuer: "",
   url: "",
   date: "",
+  show-url: false,
 ) = {
   [
-    *#name*, #issuer
-    #if url != "" {
-      [ (#link("https://" + url)[#url])]
+    #if not show-url and url != "" {
+      link(url)[#strong(name)]
+    } else {
+      strong(name)
     }
+    #if issuer != "" [, #issuer]
+    #if show-url and url != "" [
+      (#link(url)[#display-url(url)])
+    ]
     #h(1fr) #date
   ]
 }
