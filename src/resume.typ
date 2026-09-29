@@ -237,3 +237,13 @@
     right: dates,
   )
 }
+
+#let award(
+  name: "",
+  date: "",
+) = {
+  generic-one-by-two(
+    left: strong(name),
+    right: date,
+  )
+}
