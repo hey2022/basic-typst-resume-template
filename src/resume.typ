@@ -230,10 +230,17 @@
 
 #let extracurriculars(
   activity: "",
+  role: "",
   dates: "",
 ) = {
   generic-one-by-two(
-    left: strong(activity),
+    left: {
+      if role == "" {
+        [*#activity*]
+      } else {
+        [*#role*, #activity]
+      }
+    },
     right: dates,
   )
 }
