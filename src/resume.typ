@@ -193,14 +193,23 @@
   role: "",
   name: "",
   url: "",
+  technologies: "",
   dates: "",
 ) = {
   generic-one-by-two(
     left: {
       if role == "" {
-        [*#name* #if url != "" and dates != "" [ (#link("https://" + url)[#url])]]
+        [
+          *#name*
+          #if technologies != "" [ | #technologies]
+          #if url != "" and dates != "" [ (#link("https://" + url)[#url])]
+        ]
       } else {
-        [*#role*, #name #if url != "" and dates != "" [ (#link("https://" + url)[#url])]]
+        [
+          *#name* #sym.dash.em #role
+          #if technologies != "" [ | #technologies]
+          #if url != "" and dates != "" [ (#link("https://" + url)[#url])]
+        ]
       }
     },
     right: {
