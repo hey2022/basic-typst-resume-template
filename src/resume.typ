@@ -40,7 +40,13 @@
   )
 
   // Link styles
-  show link: underline
+  show link: it => {
+    if it.body == none {
+      underline(it)
+    } else {
+      it
+    }
+  }
 
   // Small caps for section titles
   show heading.where(level: 2): it => [
@@ -85,6 +91,7 @@
   pad(
     top: 0.25em,
     align(personal-info-position)[
+      #show link: underline
       #{
         let items = (
           contact-item(pronouns),
@@ -146,8 +153,8 @@
   }
 }
 
-#let display-url(url) = {
-  url.replace(regex("^https?://"), "")
+#let url-link(url) = {
+  link(url)[#underline(url.replace(regex("^https?://")))]
 }
 
 // Section components below
@@ -212,13 +219,13 @@
       #if technologies.len() > 0 [ | #technologies.join([ #sym.dot.op ]) ]
       #if (
         show-url and url != "" and dates != ""
-      ) [(#link(url)[#display-url(url)])]
+      ) [(#url-link(url)]
     ],
     right: {
       if dates != "" {
         dates
       } else if show-url and url != "" {
-        link(url)[#display-url(url)]
+        url-link(url)
       }
     },
   )
@@ -238,9 +245,7 @@
       strong(name)
     }
     #if issuer != "" [, #issuer]
-    #if show-url and url != "" [
-      (#link(url)[#display-url(url)])
-    ]
+    #if show-url and url != "" [(#url-link(url))]
     #h(1fr) #date
   ]
 }
