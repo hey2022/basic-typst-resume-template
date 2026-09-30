@@ -142,7 +142,7 @@
 }
 
 // Cannot just use normal --- ligature because ligatures are disabled for good reasons
-#let dates-helper(
+#let date-range(
   start-date: "",
   end-date: "",
 ) = {
@@ -231,7 +231,7 @@
   )
 }
 
-#let certificates(
+#let certificate(
   name: "",
   issuer: "",
   url: "",
@@ -250,7 +250,7 @@
   ]
 }
 
-#let extracurriculars(
+#let extracurricular(
   activity: "",
   role: "",
   dates: "",
