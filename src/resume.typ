@@ -19,6 +19,7 @@
   font-size: 10pt,
   lang: "en",
   margin: 0.5in, // Reccomended to have 0.5in margin on all sides
+  leading: 0.65em,
   body,
 ) = {
   // Sets document metadata
@@ -113,7 +114,7 @@
   )
 
   // Main body.
-  set par(justify: true)
+  set par(justify: true, leading: leading)
 
   body
 }
