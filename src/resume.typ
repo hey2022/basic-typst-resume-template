@@ -197,7 +197,7 @@
   role: "",
   name: "",
   url: "",
-  technologies: "",
+  technologies: (),
   dates: "",
   show-url: false,
 ) = {
@@ -209,7 +209,7 @@
         strong(name)
       }
       #if role != "" [ #sym.dash.em #role]
-      #if technologies != "" [ | #technologies]
+      #if technologies.len() > 0 [ | #technologies.join([ #sym.dot.op ]) ]
       #if (
         show-url and url != "" and dates != ""
       ) [(#link(url)[#display-url(url)])]
