@@ -202,8 +202,9 @@
 }
 
 #let project(
-  role: "",
   name: "",
+  organization: "",
+  role: "",
   url: "",
   technologies: (),
   dates: "",
@@ -216,7 +217,13 @@
       } else {
         strong(name)
       }
-      #if role != "" [ #sym.dash.em #role]
+      #if organization != "" and role != "" [
+        #sym.dash.em #organization, #role
+      ] else if organization != "" [
+        #sym.dash.em #organization
+      ] else if role != "" [
+        #sym.dash.em #role
+      ]
       #if technologies.len() > 0 [ | #technologies.join([ #sym.dot.op ]) ]
       #if (
         show-url and url != "" and dates != ""
