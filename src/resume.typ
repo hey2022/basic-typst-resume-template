@@ -201,7 +201,7 @@
   )
 }
 
-#let project(
+#let entry(
   name: "",
   organization: "",
   role: "",
@@ -236,51 +236,5 @@
         url-link(url)
       }
     },
-  )
-}
-
-#let certificate(
-  name: "",
-  issuer: "",
-  url: "",
-  date: "",
-  show-url: false,
-) = {
-  [
-    #if not show-url and url != "" {
-      link(url)[#strong(name)]
-    } else {
-      strong(name)
-    }
-    #if issuer != "" [, #issuer]
-    #if show-url and url != "" [(#url-link(url))]
-    #h(1fr) #date
-  ]
-}
-
-#let extracurricular(
-  activity: "",
-  role: "",
-  dates: "",
-) = {
-  generic-one-by-two(
-    left: {
-      if role == "" {
-        [*#activity*]
-      } else {
-        [*#activity* #sym.dash.em #role]
-      }
-    },
-    right: dates,
-  )
-}
-
-#let award(
-  name: "",
-  date: "",
-) = {
-  generic-one-by-two(
-    left: strong(name),
-    right: date,
   )
 }
