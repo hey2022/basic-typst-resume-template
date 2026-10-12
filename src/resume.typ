@@ -161,41 +161,41 @@
 // Section components below
 #let edu(
   institution: "",
-  dates: "",
+  date: "",
   degree: "",
   gpa: "",
   location: "",
-  // Makes dates on upper right like rest of components
+  // Makes date on upper right like rest of components
   consistent: false,
 ) = {
   if consistent {
-    // edu-constant style (dates top-right, location bottom-right)
+    // edu-constant style (date top-right, location bottom-right)
     generic-two-by-two(
       top-left: strong(institution),
-      top-right: dates,
+      top-right: date,
       bottom-left: emph(degree),
       bottom-right: emph(location),
     )
   } else {
-    // original edu style (location top-right, dates bottom-right)
+    // original edu style (location top-right, date bottom-right)
     generic-two-by-two(
       top-left: strong(institution),
       top-right: location,
       bottom-left: emph(degree),
-      bottom-right: emph(dates),
+      bottom-right: emph(date),
     )
   }
 }
 
 #let work(
   title: "",
-  dates: "",
+  date: "",
   company: "",
   location: "",
 ) = {
   generic-two-by-two(
     top-left: strong(title),
-    top-right: dates,
+    top-right: date,
     bottom-left: company,
     bottom-right: emph(location),
   )
@@ -207,7 +207,7 @@
   role: "",
   url: "",
   technologies: (),
-  dates: "",
+  date: "",
   show-url: false,
 ) = {
   generic-one-by-two(
@@ -226,12 +226,12 @@
       ]
       #if technologies.len() > 0 [ | #technologies.join([ #sym.dot.op ]) ]
       #if (
-        show-url and url != "" and dates != ""
+        show-url and url != "" and date != ""
       ) [(#url-link(url)]
     ],
     right: {
-      if dates != "" {
-        dates
+      if date != "" {
+        date
       } else if show-url and url != "" {
         url-link(url)
       }
